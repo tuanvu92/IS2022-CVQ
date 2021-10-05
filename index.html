@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>ICASSP 2022 Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Single-channel speech enhancement with noise-robust Vector-quantized Variational Autoencoder</h1>
+      <h2 class="project-tagline">Tuan Vu Ho, Quoc Huy Nguyen, and Masashi Unoki <br> Japan Advanced Institute of Science and Technology</h2>
+      <h2 class="project-tagline">Contact: tuanvu.ho@jaist.ac.jp</h2>
+    </section>
+
+    <section class="main-content">
+      <h1>
+      <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Abstract</h1>
+
+      <p>Recent speech enhancement methods based on complex ideal ratio mask (cIRM) have achieved promising results. To estimate the cIRM, these methods often focus on the time-domain constraints such as scale-invariant signal-to-distortion ratio (SI-SDR) without considering the time-frequency domain, which contains important harmonic structure information. This paper proposed a speech enhancement methods based on the noise-robust Vector-quantized Variational Autoencoder model, in which both constraints for time-domain and time-frequency domain are taken into account. In particular, the Itakura-Saito divergence, which closely related to the perceptual similarity between two spectrum, is applied for the time-frequency domain. On the other hand, the SI-SDR metric is employed for time-domain constraint.Tto give direct comparison with other speech enhancement studies, the proposed model is evaluated on the open Voice Bank+DEMAND database. The experimental results indicate that the proposed method can achieve the PESQ score of 2.85 and STOI score of 0.94, which is better than the strong baseline deep-complex convolution recurrent network (DCCRN+) trained on the same database.</p>
+      <figure>
+        <img src="img/overview.svg" alt="" style="max-width:90%;margin-left:auto; margin-right:auto;display:block;" >
+        <figcaption style="max-width:80%;margin-left:auto; margin-right:auto;display:block;">Figure 1: Overview of CVQ speech enhancement.</figcaption>
+      </figure>
+      <br>     
+
+      <hr>
+      <h1>
+      <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Samples</h1>
+      <h2>Sound sample of Voice Bank+DEMAND test set</h2>
+
+      <table>
+		<tr>
+		   <td></td>
+		   <th>p232</th>
+		   <th>p257</th>
+		</tr>
+        <tr>
+		  <th>Clean</th>
+          <td><audio controls><source src="audio/testset/clean/p232_050.wav" width="0" type="audio/wav"></audio></td>
+		  <td><audio controls><source src="audio/testset/clean/p257_003.wav" width="0" type="audio/wav"></audio></td>
+        </tr>
+		<tr>
+		  <th>Noisy</th>
+		  <td><audio controls><source src="audio/testset/noisy/p232_050.wav" type="audio/wav"></audio></td>	
+		  <td><audio controls><source src="audio/testset/noisy/p257_003.wav" width="0" type="audio/wav"></audio></td>		  
+		</tr>
+		<tr>
+		  <th>Enhanced</th>
+		  <td><audio controls><source src="audio/testset/enhanced/p232_050.wav" type="audio/wav"></audio></td>
+		  <td><audio controls><source src="audio/testset/enhanced/p257_003.wav" width="0" type="audio/wav"></audio></td>
+		</tr>
+        
+      </table>
+
+      <h2>Sound sample from ablation test</h2>     
+	  <h3>p232</h3>
+      <table>
+		<tr>
+		   <td></td>
+		   <th>Clean</th>
+		   <th>Noisy</th>
+		   <th>Enhanced</th>
+		</tr>
+        <tr>
+          <th>0dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p232_059.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p232_059_0dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p232_059_0dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr>
+		<tr>
+          <th>3dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p232_059.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p232_059_3dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p232_059_3dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr> 
+		<tr>
+          <th>5dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p232_059.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p232_059_5dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p232_059_5dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr> 
+		<tr>
+          <th>10dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p232_059.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p232_059_10dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p232_059_10dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr> 
+		<tr>
+          <th>20dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p232_059.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p232_059_20dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p232_059_20dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr> 
+      </table>
+
+	  <h3>p257</h3>
+      <table>
+		<tr>
+		   <td></td>
+		   <th>Clean</th>
+		   <th>Noisy</th>
+		   <th>Enhanced</th>
+		</tr>
+        <tr>
+          <th>0dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p257_210.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p257_210_0dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p257_210_0dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr>
+		<tr>
+          <th>3dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p257_210.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p257_210_3dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p257_210_3dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr> 
+		<tr>
+          <th>5dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p257_210.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p257_210_5dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p257_210_5dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr> 
+		<tr>
+          <th>10dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p257_210.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p257_210_10dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p257_210_10dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr> 
+		<tr>
+          <th>20dB</th>
+          <td><audio  controls><source src="audio/ablation/clean/p257_210.wav" type="audio/wav"></audio></td>
+		  <td><audio  controls><source src="audio/ablation/noisy/p257_210_20dB_0_noisy.wav" type="audio/wav"></audio></td>			  
+          <td><audio controls><source src="audio/ablation/enhanced/p257_210_20dB_0_enhanced.wav" type="audio/wav"></audio></td>
+        </tr> 
+      </table>
+	  
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/tuanvu92/VCC2020">ICASSP2022 Demo</a> is maintained by <a href="https://github.com/tuanvu92">tuanvu92</a>.</span>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+  </body>
+</html>
