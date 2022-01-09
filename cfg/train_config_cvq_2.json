@@ -1,0 +1,112 @@
+{
+  "training_configs": {
+    "model_name": "ComplexVQ2",
+    "checkpoint_prefix": "ComplexVQ2",
+    "train_epoch": 1000,
+    "decay_rate": 0.992,
+    "checkpoint_path": "",
+    "continue_from_cpt": false,
+    "iters_per_checkpoint": 10000,
+    "iters_per_eval": 1000,
+    "batch_size": 256,
+    "learning_rate": 4e-4,
+    "use_fp16": false,
+    "pretrain": true
+  },
+  "validation_configs": {
+    "test_file": "/home/messier/PycharmProjects/data/librispeech/wav/107/22885/107-22885-0030.wav",
+    "noise_file": "/home/messier/PycharmProjects/data/musan_split/test/noise/free-sound/noise-free-sound-0003/00006.wav",
+    "snr": [0, 5, 10]
+  },
+  "data_configs": {
+    "max_batch_len": 256,
+    "clean_dir_path": "/home/messier/PycharmProjects/data/VoiceBank/wav16/clean_trainset_wav"
+  },
+  "model_configs": {
+    "vq_configs": {
+      "encoder_configs": {
+        "top": {
+          "residual_dim": 64,
+          "gate_dim": 64,
+          "skip_dim":  64,
+          "kernel_size":  3,
+          "down_sample_factor": 2,
+          "dilation_rate": [1, 2, 4, 1, 2, 4]
+        },
+        "bot": {
+          "output_dim":  192,
+          "residual_dim": 192,
+          "gate_dim": 192,
+          "skip_dim":  192,
+          "kernel_size":  3,
+          "down_sample_factor": 2,
+          "dilation_rate": [1, 2, 4, 1, 2, 4]
+        }
+      },
+      "decoder_configs": {
+        "top": {
+          "output_dim": 64,
+          "residual_dim": 128,
+          "gate_dim": 128,
+          "skip_dim": 64,
+          "n_stage": 2,
+          "kernel_size": 3,
+          "n_upsample_factor": 2,
+          "dilation_rate": [1, 2, 4]
+        },
+        "bot": {
+          "residual_dim": 128,
+          "gate_dim": 128,
+          "skip_dim": 256,
+          "n_stage": 4,
+          "kernel_size": 3,
+          "n_upsample_factor": 2,
+          "dilation_rate": [1, 2, 4]
+        }
+      },
+      "quantize_configs": {
+        "top": {
+          "emb_dim": 32,
+          "n_emb": 128
+        },
+        "bot": {
+          "emb_dim": 64,
+          "n_emb": 256
+        }
+      }
+    },
+    "noise_vae_configs": {
+      "latent_dim": 64,
+      "encoder_configs": {
+        "output_dim": 128,
+        "residual_dim": 128,
+        "gate_dim": 128,
+        "skip_dim":  128,
+        "kernel_size":  3,
+        "down_sample_factor": 0,
+        "dilation_rate": [1, 2, 4, 1, 2, 4]
+      },
+      "decoder_configs": {
+        "residual_dim": 128,
+        "gate_dim": 128,
+        "skip_dim": 128,
+        "kernel_size": 3,
+        "n_upsample_factor": 0,
+        "n_stage": 4,
+        "dilation_rate": [1, 2, 4]
+      }
+    },
+    "phase_estimator_configs": {
+      "hidden_dim": 64
+    },
+    "stft_configs": {
+      "win_len": 400,
+      "win_inc": 100,
+      "fft_len": 512
+    }
+  },
+  "dist_configs": {
+        "dist_backend": "nccl",
+        "dist_url": "tcp://localhost:54321"
+  }
+}
